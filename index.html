@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PocketSmart AI - smart budget planning and recommendations">
+  <title>PocketSmart AI | Smart Budget Planner</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">Pocket<span>Smart</span> AI</a>
+  <div class="status" id="status"><span></span> AI assistant ready</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">GENERATIVE AI • SMART BUDGETING</p>
+      <h1>Plan better.<br><span>Spend smarter.</span></h1>
+      <p class="hero-copy">Build a practical budget and get personalized recommendations for home interiors, parties, or jewelry — all from one simple assistant.</p>
+      <div class="hero-pills">
+        <span>₹ INR budgets</span><span>AI recommendations</span><span>Optional outfit image</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="mini-label">POCKETSMART INSIGHT</div>
+      <div class="mini-total" id="heroTotal">₹10,000</div>
+      <div class="mini-bar"><i></i></div>
+      <p>Set your budget first. PocketSmart distributes it across the most important categories.</p>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <div class="panel form-panel">
+      <div class="panel-title">
+        <div><p class="eyebrow">STEP 01</p><h2>Choose your planner</h2></div>
+      </div>
+
+      <div class="planner-tabs">
+        <button class="tab active" data-planner="home"><b>⌂</b><span>Home</span><small>Interior</small></button>
+        <button class="tab" data-planner="party"><b>✦</b><span>Party</span><small>Event</small></button>
+        <button class="tab" data-planner="jewelry"><b>◇</b><span>Jewelry</span><small>Occasion</small></button>
+      </div>
+
+      <form id="plannerForm">
+        <input type="hidden" name="planner" id="planner" value="home">
+        <div class="field">
+          <label for="budget">Total budget <span>₹</span></label>
+          <input id="budget" name="budget" type="number" min="100" step="100" value="10000" required>
+          <div class="budget-line"><span>Recommended planning range: ₹1,000+</span><strong id="budgetPreview">₹10,000</strong></div>
+          <input id="budgetRange" type="range" min="1000" max="200000" step="500" value="10000">
+        </div>
+
+        <div id="homeFields" class="dynamic-fields">
+          <div class="field">
+            <label for="rooms">Room / area</label>
+            <select id="rooms" name="rooms"><option>Living Room</option><option>Bedroom</option><option>Kitchen</option><option>Dining Area</option><option>Full Home</option></select>
+          </div>
+          <div class="field">
+            <label for="style">Preferred style</label>
+            <select id="style" name="style"><option>Modern</option><option>Minimal</option><option>Traditional</option><option>Scandinavian</option><option>Luxury</option></select>
+          </div>
+          <div class="field">
+            <label for="home_items">Items you need</label>
+            <input id="home_items" name="items" placeholder="e.g. lights, fan, table, curtains">
+          </div>
+        </div>
+
+        <div id="partyFields" class="dynamic-fields hidden">
+          <div class="two-col">
+            <div class="field"><label for="event_type">Event type</label><select id="event_type" name="event_type"><option>Birthday</option><option>Wedding</option><option>Corporate</option><option>Anniversary</option><option>Get-together</option></select></div>
+            <div class="field"><label for="guests">Guests</label><input id="guests" name="guests" type="number" min="1" value="20"></div>
+          </div>
+          <div class="field"><label for="venue">Venue / city preference</label><input id="venue" name="venue" placeholder="e.g. Chennai, indoor venue"></div>
+        </div>
+
+        <div id="jewelryFields" class="dynamic-fields hidden">
+          <div class="two-col">
+            <div class="field"><label for="occasion">Occasion</label><select id="occasion" name="occasion"><option>Wedding</option><option>Party</option><option>Office</option><option>Festival</option><option>Date Night</option></select></div>
+            <div class="field"><label for="jewelry_style">Jewelry style</label><select id="jewelry_style" name="jewelry_style"><option>Elegant</option><option>Minimal</option><option>Traditional</option><option>Statement</option><option>Contemporary</option></select></div>
+          </div>
+          <div class="field"><label for="outfit">Outfit description</label><input id="outfit" name="outfit" placeholder="e.g. navy blue saree with silver details"></div>
+          <div class="upload">
+            <input id="outfit_image" name="outfit_image" type="file" accept="image/png,image/jpeg,image/webp">
+            <div><b>＋ Add outfit image</b><span>Optional • JPG, PNG or WebP • max 5 MB</span></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="notes">Extra preferences <small>(optional)</small></label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Tell the AI anything else it should consider..."></textarea>
+        </div>
+
+        <button class="primary-btn" id="generateBtn" type="submit">Generate my plan <span>→</span></button>
+        <p class="privacy">No database is used. Your form data is processed only for this request.</p>
+      </form>
+    </div>
+
+    <div class="panel results-panel">
+      <div class="results-head">
+        <div><p class="eyebrow">STEP 02</p><h2>Your smart plan</h2></div>
+        <button class="ghost-btn" id="resetBtn">Reset</button>
+      </div>
+      <div id="results">
+        <div class="empty-state">
+          <div class="empty-icon">✦</div>
+          <h3>Your recommendations will appear here</h3>
+          <p>Choose a planner, enter your budget, and click <b>Generate my plan</b>.</p>
+          <div class="example"><span>Example</span> ₹10,000 • Modern living room</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><b>PocketSmart AI</b><span>Budget-aware recommendations powered by Generative AI</span><span>© 2026</span></footer>
+<script src="/script.js"></script>
+</body>
+</html>
